@@ -6,15 +6,15 @@ pipeline {
   stages {
       stage("Test1") {
         steps {
-						     echo'Test1'
-						     sh'mvn test -Dtest="Devops2.*" -Dpublish'
-							}
-				post{
-			        success{
-			          echo'Test1-success'
-			          junit"**/target/surefire-reports/*Devops2.*.xml"
-			        }
-		       } 
+		echo'Test1'
+		sh'mvn test -Dtest="Devops2.*" -Dpublish'
+		}
+	post{
+		success{
+		  echo'Test1-success'
+		  junit"**/target/surefire-reports/*Devops2.*.xml"
+		}
+       	     } 
       }
       stage("Test2") {
         steps {
