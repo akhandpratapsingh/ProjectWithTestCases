@@ -1,4 +1,4 @@
-package com.example.EnterpriseDevops;
+package com.example.Devops2;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class GreetingTest extends EnterpriseDevopsApplicationTests {
+public class GreetingTest2 extends EnterpriseDevopsApplicationTests2 {
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
