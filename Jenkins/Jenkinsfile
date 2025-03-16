@@ -21,17 +21,6 @@ pipeline {
                 }
              } 
         }
-        stage('Upload to JFrog') {
-            steps {
-                sh 'jf rt u "target/*.jar" "ProjectWithTestCases/path-in-artifactory/" --build-name=my-build --build-number=${BUILD_NUMBER}'
-            }
-        }
-
-        stage('Download from JFrog') {
-            steps {
-                sh 'jf rt dl "ProjectWithTestCases/path-in-artifactory/*.jar" "local-directory/"'
-            }
-        }
         stage('Quality Summary') {
             steps {
                 withSonarQubeEnv('SonarQubeAkhand') {
