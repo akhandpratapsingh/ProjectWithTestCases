@@ -1,3 +1,3 @@
 # This is Demo Repo...
 # Sample commit -> SCRUM-2
-# SCRUM-2: Scratch branch
+# SCRUM-2: Scratch branch 2
