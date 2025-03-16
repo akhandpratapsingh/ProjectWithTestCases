@@ -21,6 +21,19 @@ pipeline {
                 }
              } 
         }
+        stage('Quality Summary') {
+            steps {
+                withSonarQubeEnv('SonarQubeAkhand') {
+                    sh '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=akhandpratapsingh_ProjectWithTestCases \
+                        -Dsonar.host.url=https://sonarcloud.io \
+                        -Dsonar.organization=akhandpratapsingh-1 \
+                        -Dsonar.login=750ef40825721b9c5fe9d803fd82a0c597cf4de2
+                    '''
+                }
+            }
+        }
         stage('Change') {
             steps {
                 echo 'Creating change'
