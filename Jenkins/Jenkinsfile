@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo'Test1'
-                sh'mvn test -Dtest="Devops2.*" -Dpublish'
+                sh'mvn test -Dtest="*.java" -Dpublish'
             }
         post{
             success{
