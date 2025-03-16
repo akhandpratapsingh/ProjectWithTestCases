@@ -2,6 +2,6 @@
 # Sample commit -> SCRUM-2
 # SCRUM-2: Scratch branch - new pull request
 # scratch new branch 
-# 2mnd commit
+
 
 
