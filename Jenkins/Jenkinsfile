@@ -21,11 +21,11 @@ pipeline {
                 }
              } 
         }
-        stage('Upload Artifact') {
-            steps {
+        // stage('Upload Artifact') {
+        //     steps {
                 
-            }
-        }
+        //     }
+        // }
         stage('Quality Summary') {
             steps {
                 withSonarQubeEnv('SonarQubeAkhand') {
