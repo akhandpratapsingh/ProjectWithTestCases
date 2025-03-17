@@ -9,11 +9,6 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        // stage('Download from JFrog') {
-        //     steps {
-        //         sh 'jf rt dl "my-repository/path-in-artifactory/*.jar" "local-directory/"'
-        //     }
-        // }
         stage('Test') {
             steps {
                 echo'Test1'
