@@ -4,9 +4,20 @@ pipeline {
         maven "Maven"
       }
     stages {
-        stage('Build Package') {
+        stage('Download Artifact') {
             steps {
-                 sh 'mvn clean package'
+                 script { 
+                    def server = Artifactory.server('jfrognew')
+                    def downSpec = """{
+                        "files": [{
+                            "pattern": "tf-trial/113/app-devops-jenkins-113-SNAPSHOT.jar",
+                            "target": "/var/jenkins_home/workspace/MonaJFrogDownloadPipeline/${env.BUILD_NUMBER}/"
+                        }]
+                    }"""
+                
+                    def buildInfo = server.download(downSpec)
+                    server.publishBuildInfo(buildInfo)
+                }
             }
         }
         stage('Change') {
