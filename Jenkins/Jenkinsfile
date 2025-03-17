@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
         maven "Maven"
-        jfrog 'jfrog-cli'
       }
     stages {
         stage('Build') {
