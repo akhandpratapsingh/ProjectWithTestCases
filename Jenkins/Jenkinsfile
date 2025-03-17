@@ -30,21 +30,20 @@ pipeline {
 	    
 	stage('Artifact Upload') {
             steps {
-                //sh 'jf rt u "target/*.jar" "my-repository/path-in-artifactory/" --build-name=my-build --build-number=${BUILD_NUMBER}'
-	      	script { 
-                 def server = Artifactory.server 'JFrogServer-sunil.yerubandi'
-                 def uploadSpec = """{
-                    "files": [{
-                       "pattern": "target/*.jar",
-                       "target": "tf-trial//${env.BUILD_NUMBER}/"
-		    	}]
-		}"""
+                script { 
+                    def server = Artifactory.server 'JFrogServer-sunil.yerubandi'
+                    def uploadSpec = """{
+                        "files": [{
+                            "pattern": "target/*.jar", 
+                            "target": "tf-trial/${env.BUILD_NUMBER}/"
+                        }]
+                    }"""
 
-	      def buildInfo = server.upload(uploadSpec) 
-	      server.publishBuildInfo buildInfo
-	    }
-	  }
-	}
+                    def buildInfo = server.upload(uploadSpec) 
+                    server.publishBuildInfo buildInfo   
+                }
+            }
+        }
 	    
         stage('Quality Summary') {
             steps {
