@@ -28,8 +28,8 @@ pipeline {
                     def server = Artifactory.server 'jfrogsn'
                     def uploadSpec = """{
                         "files": [{
-                            "pattern": "target/*.jar", 
-                            "target": "tf-trial/${env.BUILD_NUMBER}/"
+                            "pattern": "target/EnterpriseDevops-0.0.1-SNAPSHOT.jar", 
+                            "target": "DevOpsEnterprise/${env.BUILD_NUMBER}/"
                         }]
                     }"""
 
