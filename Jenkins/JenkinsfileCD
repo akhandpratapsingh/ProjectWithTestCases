@@ -7,7 +7,7 @@ pipeline {
         stage('Download Artifact') {
             steps {
                  script { 
-                    def server = Artifactory.server('jfrognew')
+                    def server = Artifactory.server('jfrogsn')
                     def downSpec = """{
                         "files": [{
                             "pattern": "tf-trial/113/app-devops-jenkins-113-SNAPSHOT.jar",
