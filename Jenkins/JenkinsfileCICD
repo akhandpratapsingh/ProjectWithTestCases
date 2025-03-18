@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    tools {
+        maven "Maven"
+      }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Artifact') {
+            steps {
+                script { 
+                    def server = Artifactory.server 'jfrognew'
+                    def uploadSpec = """{
+                        "files": [{
+                            "pattern": "target/EnterpriseDevops-0.0.1-SNAPSHOT.jar", 
+                            "target": "tf-trial/${env.BUILD_NUMBER}/"
+                        }]
+                    }"""
+
+                    def buildInfo = server.upload(uploadSpec) 
+                    server.publishBuildInfo buildInfo   
+                }
+            }
+        }
+        stage('Download Artifact') {
+            steps {
+                 script { 
+                    def server = Artifactory.server('jfrognew')
+                    def downSpec = """{
+                        "files": [{
+                            "pattern": "tf-trial/5/EnterpriseDevops-0.0.1-SNAPSHOT.jar",
+                            "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/",
+                            "props": "latest=true"
+                        }]
+                    }"""
+                
+                    def buildInfo = server.download(downSpec)
+                    server.publishBuildInfo(buildInfo)
+                }
+            }
+        }
+    }
+}
