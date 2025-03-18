@@ -8,9 +8,9 @@ pipeline {
             steps {
                 script {
                     BUILD_NUMBER_CI = input(
-                        message: 'Enter the build number:', 
+                        message: 'Enter the Artifact build number to be deployed:', 
                         parameters: [
-                            string(name: 'VERSION', defaultValue: '1.0.0', description: 'Enter the version number')
+                            string(name: 'VERSION', defaultValue: '15', description: 'Enter the Artifact Build number to be deployed')
                         ]
                     )
                 }
