@@ -34,8 +34,7 @@ pipeline {
                     def downSpec = """{
                         "files": [{
                             "pattern": "tf-trial/5/EnterpriseDevops-0.0.1-SNAPSHOT.jar",
-                            "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/",
-                            "props": "latest=true"
+                            "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/"
                         }]
                     }"""
                 
