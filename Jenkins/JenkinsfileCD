@@ -5,12 +5,17 @@ pipeline {
       }
     stages {
         stage('Download Artifact') {
+            script {
+                    BUILD_NUMBER = input message: 'Enter the CI pipelin's build version:', parameters: [
+                        string(name: 'VERSION', defaultValue: '1', description: 'Enter the version number')
+                    ]
+                }
             steps {
                  script { 
                     def server = Artifactory.server('jfrogsn')
                     def downSpec = """{
                         "files": [{
-                            "pattern": "tf-trial/5/EnterpriseDevops-0.0.1-SNAPSHOT.jar",
+                            "pattern": "tf-trial/${BUILD_NUMBER}/EnterpriseDevops-0.0.1-SNAPSHOT.jar",
                             "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/"
                         }]
                     }"""
