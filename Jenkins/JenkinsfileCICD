@@ -14,10 +14,10 @@ pipeline {
             steps {
                 script { 
                     def server = Artifactory.server 'jfrogsn'
-                    def uploadSpec = """{
+                    """{
                         "files": [{
-                            "pattern": "target/EnterpriseDevops-0.0.1-SNAPSHOT.jar", 
-                            "target": "tf-trial/${env.BUILD_NUMBER}/"
+                            "aql": "items.find({\"repo\":\"tf-trial\", \"path\":{\"$match\":\"*/\"}, \"name\":\"EnterpriseDevops-0.0.1-SNAPSHOT.jar\"}).sort({\"\$desc\" : [\"created\"]}).limit(1)",
+                            "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/"
                         }]
                     }"""
 
