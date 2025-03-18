@@ -10,31 +10,23 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Example') {
+        stage('Artifact') {
             steps {
-                echo 'Hello World'
-            writeFile file: "/tmp/app-devops-jenkins-${env.BUILD_NUMBER}-SNAPSHOT.jar", text: 'This is a test'
-            writeFile file: "/tmp/app-devops-jenkins2-${env.BUILD_NUMBER}-SNAPSHOT.jar", text: 'This is a test'
-    
-            }
-            
-            post { 
-                always { 
-        script { 
-                 def server = Artifactory.server 'jfrognew'
-                 def uploadSpec = """{
-                    "files": [{
-                       "pattern": "/tmp/app-devops-jenkins-${env.BUILD_NUMBER}-SNAPSHOT.jar",
-                       "target": "tf-trial//${env.BUILD_NUMBER}/"
-                    }]
-                 }"""
+                script { 
+                    def server = Artifactory.server 'jfrogsn'
+                    def uploadSpec = """{
+                        "files": [{
+                            "pattern": "target/EnterpriseDevops-0.0.1-SNAPSHOT.jar", 
+                            "target": "tf-trial/${env.BUILD_NUMBER}/"
+                        }]
+                    }"""
 
-              def buildInfo = server.upload(uploadSpec) 
-              server.publishBuildInfo buildInfo   
-        }}
-       }
-       
-      }
+                    def buildInfo = server.upload(uploadSpec) 
+                    server.publishBuildInfo buildInfo   
+                }
+            }
+        }
+        
         stage('Download Artifact') {
             steps {
                  script { 
