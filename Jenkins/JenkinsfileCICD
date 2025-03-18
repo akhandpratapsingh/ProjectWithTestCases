@@ -35,7 +35,7 @@ pipeline {
                         "files": [{
                             "pattern": "tf-trial/*/EnterpriseDevops-0.0.1-SNAPSHOT.jar",
                             "target": "/var/jenkins_home/workspace/ArtifactsToDeploy/${env.BUILD_NUMBER}/",
-                            "latest": true
+                            "props": "latest=true"
                         }]
                     }"""
                 
